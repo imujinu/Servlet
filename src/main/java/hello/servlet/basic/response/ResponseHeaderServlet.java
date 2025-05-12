@@ -21,11 +21,12 @@ public class ResponseHeaderServlet extends HttpServlet {
         response.setHeader("Pragma", "no-cache");
         response.setHeader("my-header", "hello");
 
-        content(response);
+//        content(response);
         PrintWriter writer = response.getWriter();
         writer.println("안녕하세요.");
 
-        cookie(response);
+//        cookie(response);
+        redirect(response);
     }
 
     private void content(HttpServletResponse response) {
@@ -45,4 +46,11 @@ public class ResponseHeaderServlet extends HttpServlet {
         response.addCookie(cookie);
     }
 
+    private void redirect(HttpServletResponse response) throws IOException {
+        //Status Code 302
+        //Location: /basic/hello-form.html
+        //response.setStatus(HttpServletResponse.SC_FOUND); //302
+        //response.setHeader("Location", "/basic/hello-form.html");
+        response.sendRedirect("/basic/hello-form.html");
+    }
 }
